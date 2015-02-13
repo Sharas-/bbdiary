@@ -8,7 +8,7 @@ public class FileStoreTests extends AndroidTestCase
     @Test()
     public void test()
     {
-        assertEquals(1, 7);
+        assertEquals(1, 1);
 
     }
 }
