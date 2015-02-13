@@ -2,8 +2,7 @@ package pulloware.bbdiary.domain;
 
 import java.util.Date;
 
-public class Interval
-{
+public class Interval {
     public Date getFrom() {
         return from;
     }
@@ -16,8 +15,7 @@ public class Interval
 
     private Date to;
 
-    public Interval(Date from, Date to)
-    {
+    public Interval(Date from, Date to) {
         this.from = from;
         this.to = to;
     }

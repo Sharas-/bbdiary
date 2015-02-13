@@ -7,13 +7,14 @@ public class Exercise
     private String name;
     private Collection<RepWeight> efforts;
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
     public Collection<RepWeight> GetEfforts()
     {
-        return  this.efforts;
+        return this.efforts;
     }
 
     public Exercise(String name, Collection<RepWeight> efforts)

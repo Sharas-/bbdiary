@@ -1,7 +1,6 @@
 package pulloware.bbdiary.domain;
 
-public class RepWeight
-{
+public class RepWeight {
     public int getReps() {
         return reps;
     }
@@ -13,8 +12,7 @@ public class RepWeight
     private int reps;
     private float weight;
 
-    public RepWeight(int reps, float weight)
-    {
+    public RepWeight(int reps, float weight) {
         this.reps = reps;
         this.weight = weight;
     }

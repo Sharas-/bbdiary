@@ -7,8 +7,7 @@ public class Set {
     private Collection<Exercise> exercises;
     private Interval duration;
 
-    public Set(Interval duration, Collection<Exercise> exercises)
-    {
+    public Set(Interval duration, Collection<Exercise> exercises) {
         this.exercises = exercises;
         this.duration = duration;
     }
@@ -16,11 +15,10 @@ public class Set {
     public Collection<Exercise> getExercises() {
         return exercises;
     }
-    public Interval GetDuration()
-    {
+
+    public Interval GetDuration() {
         return this.duration;
     }
-
 
 
 }
