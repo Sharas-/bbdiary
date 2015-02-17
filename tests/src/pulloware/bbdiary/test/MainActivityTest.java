@@ -1,4 +1,4 @@
-package pulloware.bbdiary.tests;
+package pulloware.bbdiary.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import pulloware.bbdiary.presentation.MainActivity;
@@ -10,17 +10,15 @@ import pulloware.bbdiary.presentation.MainActivity;
  * <p/>
  * To run this test, you can type:
  * adb shell am instrument -w \
- * -e class pulloware.bbdiary.test.MainActivityTest \
+ * -e class pulloware.bbdiary.presentation.MainActivityTest \
  * pulloware.bbdiary.tests/android.test.InstrumentationTestRunner
  */
-public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActivity>
+public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity>
 {
 
-    public MainActivityTests()
+    public MainActivityTest()
     {
-        super(MainActivity.class);
+         super(MainActivity.class);
     }
-
-
 
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="inSetColor">#003344</color>
+    <style name="theme1">
+        <item name="android:windowBackground">@color/inSetColor</item>
+    </style>
+</resources>

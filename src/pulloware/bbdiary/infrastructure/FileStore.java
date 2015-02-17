@@ -1,62 +1,64 @@
 package pulloware.bbdiary.infrastructure;
 
-import android.app.Application;
-import android.os.Environment;
-
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileStore
 {
-    private static App app = new App();
-
-    private static class App extends Application
+    public static void writeFile(String path, String content) throws IOException
     {
-    }
-
-    public class ExternalStoreNotWritable extends IOException
-    {
-        private String storeState;
-
-        ExternalStoreNotWritable(String storeState)
-        {
-            this.storeState = storeState;
-        }
-
-        public String getStoreState()
-        {
-            return storeState;
-        }
-    }
-
-    public void WriteExternal(String fileName, String content) throws IOException
-    {
-        final String sstate = Environment.getExternalStorageState();
-        if (!Environment.MEDIA_MOUNTED.equals(sstate))
-        {
-            throw new ExternalStoreNotWritable(sstate);
-        }
-
-        File dir = new File(Environment.getExternalStorageDirectory(), getAppLabel());
-        dir.mkdirs();
-        File f = new File(dir, fileName);
+        File f = new File(path);
+        f.getParentFile().mkdirs();
         f.createNewFile();
         FileWriter fw = new FileWriter(f);
         try
         {
             fw.write(content);
             fw.flush();
-        }
-        finally
+        } finally
         {
             fw.close();
         }
     }
 
-    private String getAppLabel()
+    public static String readFile(String path) throws IOException
     {
-        int stringId = app.getApplicationInfo().labelRes;
-        return app.getString(stringId);
+        File file = new File(path);
+        FileReader fr = new FileReader(file);
+        char[] buf = new char[(int) file.length()];
+        fr.read(buf);
+        fr.close();
+        return new String(buf);
+    }
+
+    public static boolean deleteDir(String path)
+    {
+        return deleteDir(new File(path));
+    }
+
+    private static boolean deleteDir(File file)
+    {
+        if (file == null)
+        {
+            return false;
+        }
+        if (!file.isDirectory())
+        {
+            return false;
+        }
+        File[] flist = file.listFiles();
+        if (flist != null && flist.length > 0)
+        {
+            for (File f : flist)
+            {
+                if (!deleteDir(f))
+                {
+                    return false;
+                }
+            }
+        }
+        return file.delete();
     }
 }
