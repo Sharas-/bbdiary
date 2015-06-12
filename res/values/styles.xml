@@ -4,4 +4,12 @@
     <style name="theme1">
         <item name="android:windowBackground">@color/inSetColor</item>
     </style>
+    <style name="timer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">62pt</item>
+    </style>
 </resources>
