@@ -1,90 +1,83 @@
 package pulloware.bbdiary.presentation;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.View;
-import android.widget.Chronometer;
-import android.widget.TextView;
 import pulloware.bbdiary.R;
+import pulloware.bbdiary.domain.Duration;
+import pulloware.bbdiary.domain.Exercise;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.util.Collection;
 
 public class MainActivity extends Activity
 {
+
     /**
      * Called when the activity is first created.
      */
-    private boolean exercising = false;
-    TextView txt;
-
-
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        txt = (TextView) findViewById(R.id.txtView);
+        displayView(new HomeView());
     }
 
-    public void onClick(View v) throws Exception
+//    public void onClick(View v) throws Exception
+//    {
+//        bulletin.setText("paspausta!!");
+//        final String sstate = Environment.getExternalStorageState();
+//        bulletin.setText(sstate);
+//        if (!Environment.MEDIA_MOUNTED.equals(sstate))
+//        {
+//            bulletin.setText("sd card not accessible! " + "state is: " + sstate);
+//            return;
+//        }
+//        File dir = new File(Environment.getExternalStorageDirectory(), "BBDiary");
+//        if (!dir.mkdirs())
+//        {
+//            bulletin.setText("couldn't create BBDiary dir on sd card");
+//        }
+//        File outFile = new File(dir, "out.bulletin");
+//        if (!outFile.createNewFile())
+//        {
+//            bulletin.setText("couldn't out file in BBDiary folder");
+//        }
+//        FileWriter f = new FileWriter(outFile);
+//        f.write("kontentas nu");
+//        f.flush();
+//        f.close();
+//
+//
+//    Log.d("dirs", " getDataDirectory(): " + Environment.getDataDirectory().getAbsolutePath());
+//    Log.d("dirs", " getExternalStorageDirectory(): " + Environment.getExternalStorageDirectory().getAbsolutePath());
+//    Log.d("dirs", " getRootDirectory(): " + Environment.getRootDirectory().getAbsolutePath());
+//    Log.d("dirs", " getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM): " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
+//
+//    Log.d("dirs", " getFilesDir().getAbsolutePath(): " +
+//    getFilesDir().getAbsolutePath());
+//    Log.d("dirs", " getApplicationContext().getApplicationInfo().name: " +
+//    getApplicationContext().getApplicationInfo());
+
+//    }
+
+    public void startSet(Collection<Exercise> exercises)
     {
-        txt.setText("paspausta!!");
-        final String sstate = Environment.getExternalStorageState();
-        txt.setText(sstate);
-        if (!Environment.MEDIA_MOUNTED.equals(sstate))
-        {
-            txt.setText("sd card not accessible! " + "state is: " + sstate);
-            return;
-        }
-        File dir = new File(Environment.getExternalStorageDirectory(), "BBDiary");
-        if (!dir.mkdirs())
-        {
-            txt.setText("couldn't create BBDiary dir on sd card");
-        }
-        File outFile = new File(dir, "out.txt");
-        if (!outFile.createNewFile())
-        {
-            txt.setText("couldn't out file in BBDiary folder");
-        }
-        FileWriter f = new FileWriter(outFile);
-        f.write("kontentas nu");
-        f.flush();
-        f.close();
-
-
+        displayView(new ExercisingView());
     }
 
-    public void onSelectFolder(View v) throws Exception
+    public void doneSet(Duration duration)
     {
-        Log.d("dirs", " getDataDirectory(): " + Environment.getDataDirectory().getAbsolutePath());
-        Log.d("dirs", " getExternalStorageDirectory(): " + Environment.getExternalStorageDirectory().getAbsolutePath());
-        Log.d("dirs", " getRootDirectory(): " + Environment.getRootDirectory().getAbsolutePath());
-        Log.d("dirs", " getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM): " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
-
-        Log.d("dirs", " getFilesDir().getAbsolutePath(): " +
-            getFilesDir().getAbsolutePath());
-        Log.d("dirs", " getApplicationContext().getApplicationInfo().name: " +
-            getApplicationContext().getApplicationInfo());
-
+        displayView(new RestingView());
     }
 
-    public void onTimerClick(View v)
+    private void displayView(Fragment view)
     {
-        Chronometer c = (Chronometer) findViewById(R.id.chronometer);
-        if (exercising)
-        {
-            c.stop();
-            exercising = false;
-        } else
-        {
-            c.setBase(SystemClock.elapsedRealtime());
-            txt.setText("" + c.getBase());
-            c.start();
-            exercising = true;
-        }
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.placeHolder, view);
+        fragmentTransaction.commit();
     }
 }
 

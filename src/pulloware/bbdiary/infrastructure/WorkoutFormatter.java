@@ -37,17 +37,16 @@ public class WorkoutFormatter
             Set s = sets.next();
             sb.append(fTime.format(s.GetDuration().getFrom()));
             sb.append(newLine);
-            for (Iterator<Exercise> exs = s.getExercises().iterator(); exs.hasNext(); ) {
-                Exercise e = exs.next();
+            for (Iterator<Exercise> exercises = s.getExercises().iterator(); exercises.hasNext(); )
+            {
+                Exercise e = exercises.next();
                 sb.append(e.getName());
                 sb.append(' ');
-                for (Iterator<RepWeight> rwts = e.GetEfforts().iterator(); rwts.hasNext(); ) {
-                    RepWeight effort = rwts.next();
-                    sb.append(effort.getReps());
-                    sb.append('x');
-                    sb.append(effort.getWeight());
-                    sb.append(' ');
-                }
+                RepWeight effort = e.GetEffort();
+                sb.append(effort.getReps());
+                sb.append('x');
+                sb.append(effort.getWeight());
+                sb.append(' ');
             }
             sb.append(newLine);
             sb.append(fTime.format(s.GetDuration().getTo()));

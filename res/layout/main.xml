@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:weightSum="1">
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MainActivity"
-            android:id="@+id/txtView"
-            android:layout_gravity="center_horizontal"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/btnClick" android:layout_gravity="center_horizontal"
-            android:onClick="onClick"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick Folder"
-            android:id="@+id/btnPickFolder" android:layout_gravity="center_horizontal"
-            android:onClick="onSelectFolder"/>
-    <Chronometer style="@style/timer" android:id="@+id/chronometer"
-                 android:onClick="onTimerClick"/>
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:id="@+id/placeHolder">
+</FrameLayout>
 

@@ -37,9 +37,9 @@ public class WorkoutFormatterTests extends TestCase
     private String exportWorkout(Locale l)
     {
         long startHour = secs(60 * 60 * 14);
-        Interval duration = new Interval(new Date(startHour), new Date(startHour + secs(11)));
-        List<RepWeight> efforts = Arrays.asList(new RepWeight(10, 80));
-        List<Exercise> exercises = Arrays.asList(new Exercise("pull-up", efforts));
+        Duration duration = new Duration(new Date(startHour), new Date(startHour + secs(11)));
+        RepWeight effort = new RepWeight(10, 80);
+        List<Exercise> exercises = Arrays.asList(new Exercise("pull-up", effort));
         List<Set> sets = Arrays.asList(new Set(duration, exercises));
         Workout w = new Workout(sets, "only pull-ups");
         return new WorkoutFormatter(l).Format(w).toString();

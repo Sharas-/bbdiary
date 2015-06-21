@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:weightSum="1">
+    <EditText android:layout_width="0dp"
+              android:layout_weight="0.7"
+              android:layout_height="wrap_content"
+              android:inputType="text"
+              android:id="@+id/tbExercise"/>
+    <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/tbReps"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/tbWeight"/>
+</LinearLayout>

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BBest</string>
+    <string name="duration_entry_label">duration</string>
+    <string name="weight_entry_label">weight</string>
+    <string name="reps_entry_label">reps</string>
+    <string name="exercise_entry_label">exercise</string>
 </resources>

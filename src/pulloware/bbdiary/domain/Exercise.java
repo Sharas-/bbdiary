@@ -1,25 +1,23 @@
 package pulloware.bbdiary.domain;
 
-import java.util.Collection;
-
 public class Exercise
 {
     private String name;
-    private Collection<RepWeight> efforts;
+    private RepWeight effort;
 
     public String getName()
     {
         return name;
     }
 
-    public Collection<RepWeight> GetEfforts()
+    public RepWeight GetEffort()
     {
-        return this.efforts;
+        return this.effort;
     }
 
-    public Exercise(String name, Collection<RepWeight> efforts)
+    public Exercise(String name, RepWeight effort)
     {
         this.name = name;
-        this.efforts = efforts;
+        this.effort = effort;
     }
 }

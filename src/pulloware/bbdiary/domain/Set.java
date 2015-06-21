@@ -3,20 +3,24 @@ package pulloware.bbdiary.domain;
 
 import java.util.Collection;
 
-public class Set {
+public class Set
+{
     private Collection<Exercise> exercises;
-    private Interval duration;
+    private Duration duration;
 
-    public Set(Interval duration, Collection<Exercise> exercises) {
+    public Set(Duration duration, Collection<Exercise> exercises)
+    {
         this.exercises = exercises;
         this.duration = duration;
     }
 
-    public Collection<Exercise> getExercises() {
+    public Collection<Exercise> getExercises()
+    {
         return exercises;
     }
 
-    public Interval GetDuration() {
+    public Duration GetDuration()
+    {
         return this.duration;
     }
 

@@ -13,11 +13,4 @@ public class WorkoutSession {
 
     }
 
-    public void AmendSet(Set s) {
-
-    }
-
-    public void Finish(String tag) {
-
-    }
 }
