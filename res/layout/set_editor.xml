@@ -1,74 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-             android:gravity="center">
-    <TableRow>
-        <TextView android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/lblSetDuration"/>
-    </TableRow>
-    <TableRow>
-        <EditText android:layout_width="0dp"
-                  android:layout_weight="0.7"
-                  android:layout_height="wrap_content"
-                  android:inputType="text"
-                  android:id="@+id/tbExercise1"/>
-        <EditText
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/tbReps1"/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/tbWeight1"/>
-    </TableRow>
-    <TableRow>
-        <EditText android:layout_width="0dp"
-                  android:layout_weight="0.7"
-                  android:layout_height="wrap_content"
-                  android:inputType="text"
-                  android:id="@+id/tbExercise2"/>
-        <EditText
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/tbReps2"/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/tbWeight2"/>
-    </TableRow>
-    <TableRow>
-        <EditText android:layout_width="0dp"
-                  android:layout_weight="0.7"
-                  android:layout_height="wrap_content"
-                  android:inputType="text"
-                  android:id="@+id/tbExercise3"/>
-        <EditText
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/tbReps3"/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/tbWeight3"/>
-    </TableRow>
-</TableLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/lblSetDuration"/>
+    <fragment android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:id="@+id/setEditorExerciseSelector"
+              android:name="pulloware.bbdiary.presentation.ExerciseSelector"
+              tools:layout="@layout/exercise_selector"/>
+</LinearLayout>

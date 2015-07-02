@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ViewSwitcher;
 import pulloware.bbdiary.R;
 import pulloware.bbdiary.domain.Exercise;
 import pulloware.bbdiary.domain.RepWeight;
@@ -21,7 +22,8 @@ import java.util.Collection;
  */
 public class WorkoutResting extends Fragment
 {
-    View view;
+    Chronometer tw;
+    ViewSwitcher viewSwitcher;
     SetEditor setEditor;
     private Set finishedSet;
 
@@ -32,9 +34,11 @@ public class WorkoutResting extends Fragment
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        view = inflater.inflate(R.layout.workout_resting, container, false);
+        View view = inflater.inflate(R.layout.workout_resting, container, false);
         setEditor = (SetEditor) getFragmentManager().findFragmentById(R.id.setEditor);
         setEditor.displaySet(this.finishedSet);
+        tw = (Chronometer) view.findViewById(R.id.timeWidget);
+        viewSwitcher = (ViewSwitcher) view.findViewById(R.id.restingViewSwitcher);
         Button b = (Button) view.findViewById(R.id.btnStartSet);
         b.setOnClickListener(new View.OnClickListener()
         {
@@ -59,7 +63,6 @@ public class WorkoutResting extends Fragment
     public void onResume()
     {
         super.onResume();
-        Chronometer tw = (Chronometer) view.findViewById(R.id.timeWidget);
         tw.setBase(SystemClock.elapsedRealtime());
         tw.start();
     }
@@ -67,6 +70,7 @@ public class WorkoutResting extends Fragment
     public void onSaveSet()
     {
         getCoordinator().saveSet(this.setEditor.getSet());
+        viewSwitcher.showNext();
     }
 
     public void onStartSet()

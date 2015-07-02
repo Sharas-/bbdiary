@@ -9,7 +9,8 @@
                  android:layout_weight="0.2"/>
     <ViewSwitcher android:layout_width="fill_parent"
                   android:layout_height="0dp"
-                  android:layout_weight="0.8">
+                  android:layout_weight="0.8"
+                  android:id="@+id/restingViewSwitcher">
         <LinearLayout android:layout_width="fill_parent"
                       android:layout_height="fill_parent"
                       android:weightSum="1"
@@ -29,8 +30,14 @@
         </LinearLayout>
         <LinearLayout android:layout_width="fill_parent"
                       android:layout_height="fill_parent"
+                      android:orientation="vertical"
                       android:weightSum="1">
-
+            <fragment android:layout_width="fill_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="0.6"
+                      android:name="pulloware.bbdiary.presentation.ExerciseSelector"
+                      tools:layout="@layout/exercise_selector"
+                      android:id="@+id/navigatorExerciseSelector"/>
             <Button
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
@@ -41,7 +48,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
-                    android:text="Start Set"
+                    android:text="Finish Workout"
                     android:id="@+id/btnFinishWorkout"/>
         </LinearLayout>
     </ViewSwitcher>
