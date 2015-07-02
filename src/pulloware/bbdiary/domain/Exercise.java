@@ -10,7 +10,7 @@ public class Exercise
         return name;
     }
 
-    public RepWeight GetEffort()
+    public RepWeight getEffort()
     {
         return this.effort;
     }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" style="@style/resting"
+              android:orientation="vertical"
+              android:weightSum="1">
+    <Chronometer style="@style/resting"
+                 android:id="@+id/timeWidget"
+                 android:layout_height="0dp"
+                 android:layout_weight="0.2"/>
+    <ViewSwitcher android:layout_width="fill_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="0.8">
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:weightSum="1"
+                      android:orientation="vertical">
+            <fragment android:layout_width="fill_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="0.8"
+                      android:name="pulloware.bbdiary.presentation.SetEditor"
+                      tools:layout="@layout/set_editor"
+                      android:id="@+id/setEditor"/>
+            <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:text="Save Set"
+                    android:id="@+id/btnSaveSet"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:weightSum="1">
+
+            <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:text="Start Set"
+                    android:id="@+id/btnStartSet"/>
+            <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:text="Start Set"
+                    android:id="@+id/btnFinishWorkout"/>
+        </LinearLayout>
+    </ViewSwitcher>
+</LinearLayout>

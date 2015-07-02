@@ -1,8 +1,5 @@
 package pulloware.bbdiary.test;
 
-import android.test.ActivityInstrumentationTestCase2;
-import pulloware.bbdiary.presentation.MainActivity;
-
 /**
  * This is a simple framework for a test of an Application.  See
  * {@link android.test.ApplicationTestCase ApplicationTestCase} for more information on
@@ -13,12 +10,12 @@ import pulloware.bbdiary.presentation.MainActivity;
  * -e class pulloware.bbdiary.presentation.MainActivityTest \
  * pulloware.bbdiary.tests/android.test.InstrumentationTestRunner
  */
-public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity>
-{
-
-    public MainActivityTest()
-    {
-         super(MainActivity.class);
-    }
-
-}
+//public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity>
+//{
+//
+//    public MainActivityTest()
+//    {
+//         super(MainActivity.class);
+//    }
+//
+//}

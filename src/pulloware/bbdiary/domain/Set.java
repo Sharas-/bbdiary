@@ -6,9 +6,9 @@ import java.util.Collection;
 public class Set
 {
     private Collection<Exercise> exercises;
-    private Duration duration;
+    private TimeFrame duration;
 
-    public Set(Duration duration, Collection<Exercise> exercises)
+    public Set(TimeFrame duration, Collection<Exercise> exercises)
     {
         this.exercises = exercises;
         this.duration = duration;
@@ -19,10 +19,8 @@ public class Set
         return exercises;
     }
 
-    public Duration GetDuration()
+    public TimeFrame timeFrame()
     {
         return this.duration;
     }
-
-
 }

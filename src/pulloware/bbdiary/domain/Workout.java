@@ -1,31 +1,62 @@
 package pulloware.bbdiary.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
-public class Workout {
-    public ArrayList<Set> getSets() {
+/**
+ * ordered non overlapping sequence of sets
+ */
+public class Workout implements Iterable<Set>
+{
+    private TreeSet<Set> orderedNonOverlappingSetSequence;
+
+    public Collection<Set> getSets()
+    {
+        ArrayList<Set> sets = new ArrayList<Set>(orderedNonOverlappingSetSequence.size());
+        for (Set s : orderedNonOverlappingSetSequence)
+        {
+            sets.add(s);
+        }
         return sets;
     }
 
-    private ArrayList<Set> sets;
-    private String tag;
-
-    public Workout(Collection<Set> sets, String tag) {
-        this.sets = new ArrayList<Set>(sets);
-        this.tag = tag;
+    @Override
+    public Iterator iterator()
+    {
+        return orderedNonOverlappingSetSequence.iterator();
     }
 
-    public String getTag() {
-        return tag;
+    private class SetComparator implements Comparator<Set>
+    {
+        @Override
+        public int compare(Set set1, Set set2)
+        {
+            if (set1.timeFrame().overlaps(set2.timeFrame()))
+                return 0;
+            if (set1.timeFrame().startedAfter(set2.timeFrame()))
+                return 1;
+            return -1;
+        }
     }
 
-    public Date GetStartedAt() {
-        return sets.get(0).GetDuration().getFrom();
+    public Workout(Collection<Set> sets) throws SetsOverlapException
+    {
+        if (sets == null || sets.size() == 0)
+        {
+            throw new IllegalArgumentException("Cannot have workout without sets");
+        }
+        this.orderedNonOverlappingSetSequence = new TreeSet<Set>(new SetComparator());
+        for (Set s : sets)
+        {
+            if (!orderedNonOverlappingSetSequence.add(s))
+            {
+                throw new SetsOverlapException("Set execution times cannot overlap");
+            }
+        }
     }
 
-    public Date GetEndedAt() {
-        return sets.get(sets.size() - 1).GetDuration().getTo();
+    public TimeFrame timeFrame()
+    {
+        return new TimeFrame(orderedNonOverlappingSetSequence.first().timeFrame().getFrom(),
+            orderedNonOverlappingSetSequence.last().timeFrame().getTo());
     }
 }

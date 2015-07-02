@@ -7,18 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
+import android.widget.TextView;
 import pulloware.bbdiary.R;
-import pulloware.bbdiary.domain.Duration;
+import pulloware.bbdiary.domain.TimeFrame;
+import pulloware.bbdiary.domain.Exercise;
+import pulloware.bbdiary.domain.Set;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
  * Created by sharas on 6/15/15.
  */
-public class ExercisingView extends Fragment
+public class WorkoutExercising extends Fragment
 {
     private Date setStart;
     Chronometer tw;
+    Collection<Exercise> exercises;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -27,7 +32,7 @@ public class ExercisingView extends Fragment
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.exercising_view, container, false);
+        View v = inflater.inflate(R.layout.workout_exercising, container, false);
         tw = (Chronometer) v.findViewById(R.id.timeWidget);
         tw.setOnClickListener(new View.OnClickListener()
         {
@@ -37,10 +42,22 @@ public class ExercisingView extends Fragment
                 onDoneSet();
             }
         });
+        TextView lblExercises = (TextView) v.findViewById(R.id.lblExercises);
+        lblExercises.setText(formatExercisesText(this.exercises));
         return v;
     }
 
-    public void  onResume()
+    private String formatExercisesText(Collection<Exercise> exercises)
+    {
+        String txt = "";
+        for (Exercise e: exercises)
+        {
+            txt += e.getName() + " " + e.getEffort().getWeight() + "x" + e.getEffort().getReps() + "\n";
+        }
+        return txt;
+    }
+
+    public void onResume()
     {
         super.onResume();
         this.setStart = new Date();
@@ -50,7 +67,12 @@ public class ExercisingView extends Fragment
 
     public void onDoneSet()
     {
-        ((MainActivity) getActivity()).doneSet(new Duration(this.setStart, new Date()));
+        Set s = new Set(new TimeFrame(this.setStart, new Date()), this.exercises);
+        ((MainActivity) getActivity()).finishSet(s);
     }
 
+    public void setExercises(Collection<Exercise> exercises)
+    {
+        this.exercises = exercises;
+    }
 }

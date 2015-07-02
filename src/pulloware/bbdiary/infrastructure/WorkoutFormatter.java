@@ -29,27 +29,25 @@ public class WorkoutFormatter
     {
         String newLine = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
-        final Set firstSet = w.getSets().iterator().next();
-        sb.append(fDateTime.format(firstSet.GetDuration().getFrom()));
+        sb.append(fDateTime.format(w.timeFrame().getFrom()));
         sb.append(newLine);
-        for (Iterator<Set> sets = w.getSets().iterator(); sets.hasNext(); )
+        for (Set s : w)
         {
-            Set s = sets.next();
-            sb.append(fTime.format(s.GetDuration().getFrom()));
+            sb.append(fTime.format(s.timeFrame().getFrom()));
             sb.append(newLine);
             for (Iterator<Exercise> exercises = s.getExercises().iterator(); exercises.hasNext(); )
             {
                 Exercise e = exercises.next();
                 sb.append(e.getName());
                 sb.append(' ');
-                RepWeight effort = e.GetEffort();
+                RepWeight effort = e.getEffort();
                 sb.append(effort.getReps());
                 sb.append('x');
                 sb.append(effort.getWeight());
                 sb.append(' ');
             }
             sb.append(newLine);
-            sb.append(fTime.format(s.GetDuration().getTo()));
+            sb.append(fTime.format(s.timeFrame().getTo()));
         }
         return sb;
     }

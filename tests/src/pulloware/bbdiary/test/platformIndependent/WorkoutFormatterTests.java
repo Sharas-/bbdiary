@@ -1,4 +1,4 @@
-package pulloware.bbdiary.test;
+package pulloware.bbdiary.test.platformIndependent;
 
 
 import junit.framework.TestCase;
@@ -10,10 +10,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-//In order to view my workout metrics later on
-//As a sportsman
-//I want to export my workout in a human readable form.
 
+/**
+ * US 4
+ */
 public class WorkoutFormatterTests extends TestCase
 {
     public void testExportFormat()
@@ -37,11 +37,11 @@ public class WorkoutFormatterTests extends TestCase
     private String exportWorkout(Locale l)
     {
         long startHour = secs(60 * 60 * 14);
-        Duration duration = new Duration(new Date(startHour), new Date(startHour + secs(11)));
+        TimeFrame duration = new TimeFrame(new Date(startHour), new Date(startHour + secs(11)));
         RepWeight effort = new RepWeight(10, 80);
         List<Exercise> exercises = Arrays.asList(new Exercise("pull-up", effort));
         List<Set> sets = Arrays.asList(new Set(duration, exercises));
-        Workout w = new Workout(sets, "only pull-ups");
+        Workout w = new Workout(sets);
         return new WorkoutFormatter(l).Format(w).toString();
     }
 

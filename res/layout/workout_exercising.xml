@@ -6,6 +6,9 @@
     <Chronometer
             style="@style/exercising"
             android:clickable="true"
-            android:id="@+id/timeWidget"
-            />
+            android:id="@+id/timeWidget"/>
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/lblExercises"
+              android:gravity="center_horizontal"/>
 </FrameLayout>

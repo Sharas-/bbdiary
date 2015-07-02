@@ -6,13 +6,23 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import pulloware.bbdiary.R;
-import pulloware.bbdiary.domain.Duration;
+import pulloware.bbdiary.application.WorkoutBuilder;
 import pulloware.bbdiary.domain.Exercise;
+import pulloware.bbdiary.domain.Set;
 
 import java.util.Collection;
 
+/**
+ * Mediator for workout activities
+ */
 public class MainActivity extends Activity
 {
+    private WorkoutBuilder workoutBuilder;
+
+    public MainActivity()
+    {
+        this.workoutBuilder = new WorkoutBuilder();
+    }
 
     /**
      * Called when the activity is first created.
@@ -21,7 +31,7 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        displayView(new HomeView());
+        displayView(new WorkoutStart());
     }
 
 //    public void onClick(View v) throws Exception
@@ -64,12 +74,21 @@ public class MainActivity extends Activity
 
     public void startSet(Collection<Exercise> exercises)
     {
-        displayView(new ExercisingView());
+        WorkoutExercising ev = new WorkoutExercising();
+        ev.setExercises(exercises);
+        displayView(ev);
     }
 
-    public void doneSet(Duration duration)
+    public void finishSet(Set s)
     {
-        displayView(new RestingView());
+        WorkoutResting rv = new WorkoutResting();
+        rv.setFinishedSet(s);
+        displayView(rv);
+    }
+
+    public void saveSet(Set s)
+    {
+        workoutBuilder.AddSet(s);
     }
 
     private void displayView(Fragment view)
