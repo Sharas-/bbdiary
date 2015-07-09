@@ -35,6 +35,7 @@ public class ExerciseSelector extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         view = inflater.inflate(R.layout.exercise_selector, container, false);
+        displayExercises(exercises);
         return view;
     }
 
@@ -57,9 +58,13 @@ public class ExerciseSelector extends Fragment
         return exercises;
     }
 
-    public void displayExercises(Collection<Exercise> exercises)
+    public void setExercises(Collection<Exercise> exercises)
     {
         this.exercises = exercises;
+    }
+
+    private void displayExercises(Collection<Exercise> exercises)
+    {
         int rowIdx = 0;
         for (Exercise e : exercises)
         {

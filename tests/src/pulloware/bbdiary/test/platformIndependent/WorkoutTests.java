@@ -12,7 +12,7 @@ import java.util.Locale;
 /**
  * Created by sharas on 6/26/15.
  */
-public class WorkoutTest extends TestCase
+public class WorkoutTests extends TestCase
 {
     DateFormat df = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss", Locale.ENGLISH);
     List<Exercise> exercises = Arrays.asList(new Exercise("pull-up", new RepWeight(10, 80)));

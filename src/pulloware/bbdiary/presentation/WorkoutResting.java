@@ -35,8 +35,9 @@ public class WorkoutResting extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.workout_resting, container, false);
-        setEditor = (SetEditor) getFragmentManager().findFragmentById(R.id.setEditor);
-        setEditor.displaySet(this.finishedSet);
+        setEditor = new SetEditor();
+        setEditor.setSet(this.finishedSet);
+        getFragmentManager().beginTransaction().replace(R.id.setEditorPlaceholder, setEditor).commit();
         tw = (Chronometer) view.findViewById(R.id.timeWidget);
         viewSwitcher = (ViewSwitcher) view.findViewById(R.id.restingViewSwitcher);
         Button b = (Button) view.findViewById(R.id.btnStartSet);
@@ -57,7 +58,21 @@ public class WorkoutResting extends Fragment
                 onSaveSet();
             }
         });
+        b = (Button) view.findViewById(R.id.btnFinishWorkout);
+        b.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                onFinishWorkout();
+            }
+        });
         return view;
+    }
+
+    private void onFinishWorkout()
+    {
+        getCoordinator().finishWorkout();
     }
 
     public void onResume()
@@ -70,6 +85,10 @@ public class WorkoutResting extends Fragment
     public void onSaveSet()
     {
         getCoordinator().saveSet(this.setEditor.getSet());
+        ExerciseSelector es = new ExerciseSelector();
+        es.setExercises(finishedSet.getExercises());
+        getFragmentManager().beginTransaction().replace(R.id.exerciseSelectorPlaceholder, es).commit();
+        //TODO: populate exercises from workout navigator
         viewSwitcher.showNext();
     }
 

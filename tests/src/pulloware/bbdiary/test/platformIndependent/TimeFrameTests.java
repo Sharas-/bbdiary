@@ -11,7 +11,7 @@ import java.util.Locale;
 /**
  * Created by sharas on 6/26/15.
  */
-public class TimeFrameTest extends TestCase
+public class TimeFrameTests extends TestCase
 {
     DateFormat df = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss", Locale.ENGLISH);
 

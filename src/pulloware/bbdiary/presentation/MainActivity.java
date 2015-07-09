@@ -5,11 +5,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import pulloware.bbdiary.R;
 import pulloware.bbdiary.application.WorkoutBuilder;
 import pulloware.bbdiary.domain.Exercise;
 import pulloware.bbdiary.domain.Set;
 
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -88,7 +90,24 @@ public class MainActivity extends Activity
 
     public void saveSet(Set s)
     {
-        workoutBuilder.AddSet(s);
+        workoutBuilder.addSet(s);
+    }
+
+    public void finishWorkout()
+    {
+        displayView(new WorkoutFinish());
+    }
+
+    public void exportWorkout()
+    {
+        try
+        {
+            workoutBuilder.exportWorkout("workout");
+        }
+        catch(IOException e)
+        {
+            Log.e("WorkoutExport", e.getMessage(), e);
+        }
     }
 
     private void displayView(Fragment view)

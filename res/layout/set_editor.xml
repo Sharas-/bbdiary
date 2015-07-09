@@ -7,9 +7,8 @@
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:id="@+id/lblSetDuration"/>
-    <fragment android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:id="@+id/setEditorExerciseSelector"
-              android:name="pulloware.bbdiary.presentation.ExerciseSelector"
-              tools:layout="@layout/exercise_selector"/>
+    <FrameLayout android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:id="@+id/setEditorPlaceholder"
+                 tools:layout="@layout/exercise_selector"/>
 </LinearLayout>

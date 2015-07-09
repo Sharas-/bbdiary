@@ -1,18 +1,20 @@
 package pulloware.bbdiary.infrastructure;
 
+import android.os.Environment;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileStore
 {
-    public static void writeFile(String path, String content) throws IOException
+
+
+    private static File writeFile(File outFile, String content) throws IOException
     {
-        File f = new File(path);
-        f.getParentFile().mkdirs();
-        f.createNewFile();
-        FileWriter fw = new FileWriter(f);
+        outFile.getParentFile().mkdirs();
+        outFile.createNewFile();
+        FileWriter fw = new FileWriter(outFile);
         try
         {
             fw.write(content);
@@ -21,44 +23,17 @@ public class FileStore
         {
             fw.close();
         }
+        return outFile;
     }
 
-    public static String readFile(String path) throws IOException
+    public static String externalDir()
     {
-        File file = new File(path);
-        FileReader fr = new FileReader(file);
-        char[] buf = new char[(int) file.length()];
-        fr.read(buf);
-        fr.close();
-        return new String(buf);
+        return new File(Environment.getExternalStorageDirectory(), "Workouts").getAbsolutePath();
     }
 
-    public static boolean deleteDir(String path)
+    public static String writeExternal(FileName file, String content) throws IOException
     {
-        return deleteDir(new File(path));
-    }
-
-    private static boolean deleteDir(File file)
-    {
-        if (file == null)
-        {
-            return false;
-        }
-        if (!file.isDirectory())
-        {
-            return false;
-        }
-        File[] flist = file.listFiles();
-        if (flist != null && flist.length > 0)
-        {
-            for (File f : flist)
-            {
-                if (!deleteDir(f))
-                {
-                    return false;
-                }
-            }
-        }
-        return file.delete();
+        File outFile = new File(externalDir(), file.toString());
+        return writeFile(outFile, content).getPath();
     }
 }

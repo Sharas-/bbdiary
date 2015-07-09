@@ -27,7 +27,9 @@ public class SetEditor extends Fragment
     {
         View view = inflater.inflate(R.layout.set_editor, container, false);
         lblSetDuration = (TextView) view.findViewById(R.id.lblSetDuration);
-        exSelector = (ExerciseSelector) getFragmentManager().findFragmentById(R.id.setEditorExerciseSelector);
+        exSelector = new ExerciseSelector();
+        exSelector.setExercises(set.getExercises());
+        getFragmentManager().beginTransaction().replace(R.id.setEditorPlaceholder, exSelector).commit();
         return view;
     }
 
@@ -36,9 +38,8 @@ public class SetEditor extends Fragment
         return new Set(this.set.timeFrame(), exSelector.getExercises());
     }
 
-    public void displaySet(Set s)
+    public void setSet(Set s)
     {
         this.set = s;
-        this.exSelector.displayExercises(s.getExercises());
     }
 }
