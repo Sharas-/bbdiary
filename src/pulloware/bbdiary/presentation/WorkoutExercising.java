@@ -61,6 +61,7 @@ public class WorkoutExercising extends Fragment
     {
         super.onResume();
         this.setStart = new Date();
+        tw.stop();
         tw.setBase(SystemClock.elapsedRealtime());
         tw.start();
     }

@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 public class WorkoutBuilder
 {
-    //public String GetTag(){ return this.tag;}
-    //public String SetTag(String tag){ this.tag = tag; }
     ArrayList<Set> sets = new ArrayList<Set>(20);
     Workout workout;
     Routine routine;
@@ -24,9 +22,8 @@ public class WorkoutBuilder
         this.workout = new Workout(sets);
     }
 
-
     /**
-     * Writes athlete friendly representation of workout to  devices' external store.
+     * Writes athlete friendly representation of workout to devices' external store.
      * @param tag to attach to exported workouts' file name
      * @return path to file where workout was exported
      */

@@ -2,14 +2,14 @@
 <resources>
     <color name="exercising_background">#ff5400</color>
     <color name="resting_background">#a4d11b</color>
-    <style name="Base" parent="android:Theme.Light">
+    <style name="Base" parent="android:Theme.Light.NoTitleBar">
         <item name="android:textSize">12pt</item>
     </style>
     <style name="exercising">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">64pt</item>
+        <item name="android:textSize">42pt</item>
         <item name="android:background">@color/exercising_background</item>
     </style>
     <style name="resting">
@@ -18,6 +18,15 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">32pt</item>
         <item name="android:background">@color/resting_background</item>
+    </style>
+    <style name="workoutClock">
+        <item name="android:textSize">16pt</item>
+    </style>
+    <style name="topBar">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">2dp</item>
+
     </style>
 
 </resources>

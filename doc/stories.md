@@ -1,8 +1,8 @@
-#1. Athlete informed of set and rest period duration
+#1. Athlete informed of set, rest and total workout durations
 
-In order to gauge intensity of my workout
+In order to maintain my workouts' intensity
 as an athlete
-I want to know duration of my sets, rest periods and total workout time
+I want to know duration of my sets, rest periods and total workout time.
 
 #2. Athlete records metrics of each set
 
@@ -19,5 +19,5 @@ I want to see what exercise(s) is next in my workout routine
 #4. Athlete exports finished workout
 
 In order to view my workout metrics later on
-As an athlete
+as an athlete
 I want to export my workout in a human readable form.

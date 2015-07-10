@@ -5,7 +5,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Chronometer;
 import pulloware.bbdiary.R;
 import pulloware.bbdiary.application.WorkoutBuilder;
 import pulloware.bbdiary.domain.Exercise;
@@ -20,6 +22,7 @@ import java.util.Collection;
 public class MainActivity extends Activity
 {
     private WorkoutBuilder workoutBuilder;
+    private Chronometer workoutClock;
 
     public MainActivity()
     {
@@ -33,7 +36,15 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        displayView(new WorkoutStart());
+        workoutClock = (Chronometer) findViewById(R.id.workoutClock);
+        displayView(new WorkoutHome());
+    }
+
+    public void startWorkout(Collection<Exercise> exercises)
+    {
+        workoutClock.setBase(SystemClock.elapsedRealtime());
+        workoutClock.start();
+        startSet(exercises);
     }
 
 //    public void onClick(View v) throws Exception
@@ -74,6 +85,7 @@ public class MainActivity extends Activity
 
 //    }
 
+
     public void startSet(Collection<Exercise> exercises)
     {
         WorkoutExercising ev = new WorkoutExercising();
@@ -95,7 +107,8 @@ public class MainActivity extends Activity
 
     public void finishWorkout()
     {
-        displayView(new WorkoutFinish());
+        workoutClock.stop();
+        displayView(new WorkoutDone());
     }
 
     public void exportWorkout()
@@ -103,8 +116,7 @@ public class MainActivity extends Activity
         try
         {
             workoutBuilder.exportWorkout("workout");
-        }
-        catch(IOException e)
+        } catch (IOException e)
         {
             Log.e("WorkoutExport", e.getMessage(), e);
         }

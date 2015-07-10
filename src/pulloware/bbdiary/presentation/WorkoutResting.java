@@ -78,6 +78,7 @@ public class WorkoutResting extends Fragment
     public void onResume()
     {
         super.onResume();
+        tw.stop();
         tw.setBase(SystemClock.elapsedRealtime());
         tw.start();
     }
